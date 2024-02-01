@@ -12,16 +12,17 @@ import (
 )
 
 func main() {
-  router := gin.Default()
-  router.GET("/ping", func(c *gin.Context) {
-    c.JSON(http.StatusOK, gin.H{
-      "message": "pong",
-    })
-  })
-  // listen and serve on 0.0.0.0:8080
-  router.Run()
+	router := gin.Default()
+	router.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, "Welcome Gin Server")
+	})
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
+	})
 
-  srv := &http.Server{
+	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: router,
 	}
